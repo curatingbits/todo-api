@@ -25,6 +25,7 @@ class ApplicationController < ActionController::API
     auth_header = request.headers['Authorization']
     token = auth_header.split(' ').last
     JsonWebToken.decode(token)
+    p JsonWebToken.decode(token)
   rescue
     nil
   end
