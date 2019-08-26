@@ -8,8 +8,8 @@ class ProjectsController < ApplicationController
 
   # GET /projects
   def index
-    @projects = Project.all
-
+    p params[:id]
+    @projects = Project.where(user: params[:id])
     render json: @projects
   end
 

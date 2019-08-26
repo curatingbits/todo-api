@@ -7,8 +7,7 @@ class TodosController < ApplicationController
 
   # GET /todos
   def index
-    @todos = Todo.all
-
+    @todos = Todo.where(project: params[:id])
     render json: @todos
   end
 
