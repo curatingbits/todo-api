@@ -7,7 +7,7 @@ class TodosController < ApplicationController
 
   # GET /todos
   def index
-    @todos = Todo.where(project: params[:id])
+    @todos = Todo.where(project: params[:id]).order(completed: :asc)
     render json: @todos
   end
 
@@ -39,6 +39,7 @@ class TodosController < ApplicationController
   # DELETE /todos/1
   def destroy
     @todo.destroy
+    render json: :created
   end
 
   private

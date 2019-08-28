@@ -41,6 +41,8 @@ class ProjectsController < ApplicationController
   # DELETE /projects/1
   def destroy
     @project.destroy
+    render json: :created
+
   end
 
   private
