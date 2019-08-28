@@ -8,7 +8,7 @@ class TodosController < ApplicationController
   # GET /todos
   def index
     @todos = Todo.where(project: params[:id]).order(completed: :asc)
-    render json: @todos
+    render json: @todos, status: :created
   end
 
   # GET /todos/1
@@ -30,7 +30,7 @@ class TodosController < ApplicationController
   # PATCH/PUT /todos/1
   def update
     if @todo.update(todo_params)
-      render json: @todo
+      render json: @todo, status: :created
     else
       render json: @todo.errors, status: :unprocessable_entity
     end

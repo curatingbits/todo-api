@@ -10,7 +10,7 @@ class ProjectsController < ApplicationController
   def index
     p params[:id]
     @projects = Project.where(user: params[:id])
-    render json: @projects
+    render json: @projects, status: :created
   end
 
   # GET /projects/1
@@ -32,7 +32,7 @@ class ProjectsController < ApplicationController
   # PATCH/PUT /projects/1
   def update
     if @project.update(project_params)
-      render json: @project
+      render json: @project, status: :created
     else
       render json: @project.errors, status: :unprocessable_entity
     end
