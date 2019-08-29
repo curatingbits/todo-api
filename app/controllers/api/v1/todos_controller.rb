@@ -9,12 +9,18 @@ module Api
       # GET /todos
       def index
         @todos = Todo.where(project: params[:id]).order(completed: :asc)
-        render json: @todos, status: :created
+        respond_to do |format|
+        format.json {render json: @todos, status: :created}
+        format.xml {render xml: @todos.as_json, status: :created}
+        end
       end
 
       # GET /todos/1
       def show
-        render json: @todo
+        respond_to do |format|
+          format.json {render json: @todo, status: :created}
+          format.xml { render xml: @todo.as_json, status: :created }
+        end
       end
 
       # POST /todos

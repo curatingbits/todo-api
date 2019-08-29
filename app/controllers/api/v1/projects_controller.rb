@@ -8,14 +8,20 @@ module Api
 
       # GET /projects
       def index
-        p params[:id]
+
         @projects = Project.where(user: params[:id])
-        render json: @projects, status: :created
+        respond_to do |format|
+        format.json {render json: @projects, status: :created}
+        format.xml {render xml: @projects.as_json, status: :created}
+        end
       end
 
       # GET /projects/1
       def show
-        render json: @project
+        respond_to do |format|
+          format.json {render json: @project}
+          format.xml { render xml: @project.as_json }
+        end
       end
 
       # POST /projects
