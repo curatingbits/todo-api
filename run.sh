@@ -32,22 +32,22 @@ td_run_server(){
 # Install the gems
 # Example => bash ./run.sh bundle
 td_run_bundler(){
-  ./bin/bundle install
+    bundle install
 }
 
 # Setup the database
 # Example => bash ./run.sh db
 td_run_db_setup(){
-  ./bin/rails db:drop
-  ./bin/rails db:create
-  ./bin/rails db:migrate
-  ./bin/rails db:seed
+    rails db:drop
+    rails db:create
+    rails db:migrate
+    rails db:seed
 }
 
 # Run any tests
 # Example => bash ./run.sh test
 td_run_tests(){
-  ./bin/bundle exec rspec
+    bundle exec rspec
 }
 
 # Format the code
