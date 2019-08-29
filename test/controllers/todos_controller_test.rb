@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'test_helper'
 
 class TodosControllerTest < ActionDispatch::IntegrationTest
@@ -5,12 +7,12 @@ class TodosControllerTest < ActionDispatch::IntegrationTest
     @todo = todos(:one)
   end
 
-  test "should get index" do
+  test 'should get index' do
     get todos_url, as: :json
     assert_response :success
   end
 
-  test "should create todo" do
+  test 'should create todo' do
     assert_difference('Todo.count') do
       post todos_url, params: { todo: { completed: @todo.completed, name: @todo.name, note: @todo.note, project_id: @todo.project_id } }, as: :json
     end
@@ -18,17 +20,17 @@ class TodosControllerTest < ActionDispatch::IntegrationTest
     assert_response 201
   end
 
-  test "should show todo" do
+  test 'should show todo' do
     get todo_url(@todo), as: :json
     assert_response :success
   end
 
-  test "should update todo" do
+  test 'should update todo' do
     patch todo_url(@todo), params: { todo: { completed: @todo.completed, name: @todo.name, note: @todo.note, project_id: @todo.project_id } }, as: :json
     assert_response 200
   end
 
-  test "should destroy todo" do
+  test 'should destroy todo' do
     assert_difference('Todo.count', -1) do
       delete todo_url(@todo), as: :json
     end

@@ -1,60 +1,60 @@
+# frozen_string_literal: true
+
 module Api
   module V1
+    class ProjectsController < ApplicationController
+      before_action :authenticate_request!
+      before_action :set_project, only: %i[show update destroy]
 
+      # GET /projects
+      def index
+        p params[:id]
+        @projects = Project.where(user: params[:id])
+        render json: @projects, status: :created
+      end
 
-class ProjectsController < ApplicationController
-  before_action :authenticate_request!
-  before_action :set_project, only: [:show, :update, :destroy]
+      # GET /projects/1
+      def show
+        render json: @project
+      end
 
-  # GET /projects
-  def index
-    p params[:id]
-    @projects = Project.where(user: params[:id])
-    render json: @projects, status: :created
-  end
+      # POST /projects
+      def create
+        @project = Project.new(project_params)
 
-  # GET /projects/1
-  def show
-    render json: @project
-  end
+        if @project.save
+          render json: @project, status: :created
+        else
+          render json: @project.errors, status: :unprocessable_entity
+        end
+      end
 
-  # POST /projects
-  def create
-    @project = Project.new(project_params)
+      # PATCH/PUT /projects/1
+      def update
+        if @project.update(project_params)
+          render json: @project, status: :created
+        else
+          render json: @project.errors, status: :unprocessable_entity
+        end
+      end
 
-    if @project.save
-      render json: @project, status: :created
-    else
-      render json: @project.errors, status: :unprocessable_entity
+      # DELETE /projects/1
+      def destroy
+        @project.destroy
+        render json: :created
+          end
+
+      private
+
+      # Use callbacks to share common setup or constraints between actions.
+      def set_project
+        @project = Project.find(params[:id])
+      end
+
+      # Only allow a trusted parameter "white list" through.
+      def project_params
+        params.require(:project).permit(:name, :description, :user_id)
+      end
     end
-  end
-
-  # PATCH/PUT /projects/1
-  def update
-    if @project.update(project_params)
-      render json: @project, status: :created
-    else
-      render json: @project.errors, status: :unprocessable_entity
-    end
-  end
-
-  # DELETE /projects/1
-  def destroy
-    @project.destroy
-    render json: :created
-
-  end
-
-  private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_project
-      @project = Project.find(params[:id])
-    end
-
-    # Only allow a trusted parameter "white list" through.
-    def project_params
-      params.require(:project).permit(:name, :description, :user_id)
-    end
-end
 end
 end
