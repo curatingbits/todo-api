@@ -1,5 +1,7 @@
 require 'jwt'
 
+
+
 class JsonWebToken
   # Encodes and signs JWT Payload with expiration
   def self.encode(payload)
