@@ -33,6 +33,37 @@ gem 'bootsnap', '>= 1.4.2', require: false
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
+  gem 'rspec-rails'
+  gem 'factory_bot_rails'
+  gem 'better_errors'
+  gem 'binding_of_caller'
+
+
+
+end
+
+group :test do
+  # gem 'simplecov', require: false
+
+  gem 'database_cleaner'
+
+  gem 'shoulda-matchers'
+  gem 'rspec-activemodel-mocks'
+  gem 'rails-controller-testing'
+  gem 'capybara'
+
+  # Choose your poison for the Capybara driver:
+  #
+  # gem 'selenium-webdriver'
+  # ... or ...
+  #gem 'capybara-webkit'
+  # ... or ...
+  # gem 'poltergeist'
+  #
+  # => See spec/support/config/capybara.rb for more details / configuration.
+
+  gem 'launchy'
+  gem 'webmock'
 end
 
 group :development do

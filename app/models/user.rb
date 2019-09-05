@@ -3,6 +3,7 @@
 class User < ApplicationRecord
   has_secure_password
   has_many :projects
+  validates :email, format: { with: URI::MailTo::EMAIL_REGEXP } 
 
   before_save :downcase_email
   # before_create :generate_confirmation_instructions

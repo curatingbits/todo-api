@@ -3,7 +3,11 @@
 require 'test_helper'
 
 class UsersControllerTest < ActionDispatch::IntegrationTest
-  # test "the truth" do
-  #   assert true
-  # end
+  describe "GET #create" do
+    it "creates new user" do
+     expect {
+      let(:user) {create(:user)}
+     }.to change(User, :count).by(1)
+    end
+  end
 end
